@@ -15,8 +15,9 @@ namespace TechStyle.Dominio.Modelo
         public string Modelo { get; set; }
         public string Tamanho { get; set; }
 
-        public void Cadastrar(string material, string cor, string marca, string modelo, string tamanho)
+        public void Cadastrar(int id, string material, string cor, string marca, string modelo, string tamanho)
         {
+            Id = id;
             Material = material;
             Cor = cor;
             Marca = marca;
@@ -26,11 +27,11 @@ namespace TechStyle.Dominio.Modelo
 
         public void Alterar(string material, string cor, string marca, string modelo, string tamanho)
         {
-            Material = material;
-            Cor = cor;
-            Marca = marca;
-            Modelo = modelo;
-            Tamanho = tamanho;
+            Material = string.IsNullOrEmpty(material.Trim()) ? Material : material;
+            Cor = string.IsNullOrEmpty(cor.Trim()) ? Cor : cor;
+            Marca = string.IsNullOrEmpty(marca.Trim()) ? Marca : marca;
+            Modelo = string.IsNullOrEmpty(modelo.Trim()) ? Modelo : modelo;
+            Tamanho = string.IsNullOrEmpty(tamanho.Trim()) ? Tamanho : tamanho;
         }        
 
     }

@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TechStyle.Dominio.Modelo;
 
 namespace TechStyle.Dominio.Repositorio
@@ -45,14 +43,12 @@ namespace TechStyle.Dominio.Repositorio
             return true;
         }
 
-        public bool AlterarStatus(int id)
+        public void AlterarStatus(int id)
         {
             var segmentoEncontrado = SelecionarPorId(id);
             var status = segmentoEncontrado.Ativo;        
 
             segmentoEncontrado.AlterarStatus(!status);
-
-            return true;
         }
 
         public Segmento SelecionarPorId(int id)

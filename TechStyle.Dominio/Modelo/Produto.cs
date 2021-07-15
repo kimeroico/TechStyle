@@ -20,14 +20,14 @@ namespace TechStyle.Dominio.Modelo
             DetalheProduto = new DetalheProduto();
         }
 
-        public void Cadastrar(decimal valorVenda, string nome, string sku, Segmento segmento, 
-            string material, string cor, string marca, string modelo, string tamanho)
+        internal void Cadastrar(decimal valorVenda, string nome, string sku, Segmento segmento, 
+            int id, string material, string cor, string marca, string modelo, string tamanho)
         {
             ValorVenda = valorVenda;
             Nome = nome;
             SKU = sku;
             Segmento = segmento;
-            DetalheProduto.Cadastrar(material, cor, marca, modelo, tamanho);
+            DetalheProduto.Cadastrar(id, material, cor, marca, modelo, tamanho);
             Ativo = false;
 
             // ValidarDuplicidade
@@ -39,6 +39,21 @@ namespace TechStyle.Dominio.Modelo
             /* 3, moda feminina, social */
             /* 4, moda feminina, fitness */
             /* 5, moda feminina, lingerie */
+        }
+
+        internal void Alterar(decimal valorVenda, string nome, Segmento segmento,
+            string material, string cor, string marca, string modelo, string tamanho)
+        {
+            ValorVenda = (valorVenda <= 0) ? ValorVenda : valorVenda;
+            Nome = string.IsNullOrEmpty(nome.Trim()) ? Nome : nome;
+            //SKU = string.IsNullOrEmpty(sku.Trim()) ? SKU : sku;
+            Segmento = (segmento == null) ? Segmento : segmento;
+            DetalheProduto.Alterar(material, cor, marca, modelo, tamanho);
+        }
+
+        internal void AlterarStatus(bool ativo)
+        {
+            Ativo = ativo;
         }
     }
 }
