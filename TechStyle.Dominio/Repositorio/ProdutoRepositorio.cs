@@ -7,7 +7,7 @@ using TechStyle.Dominio.Modelo;
 
 namespace TechStyle.Dominio.Repositorio
 {
-    class ProdutoRepositorio
+    public class ProdutoRepositorio
     {
         private List<Produto> listaDeProdutos;
 
@@ -20,8 +20,8 @@ namespace TechStyle.Dominio.Repositorio
             string material, string cor, string marca, string modelo, string tamanho)
         {
             var novoProduto = new Produto();
-            novoProduto.Cadastrar(valorVenda, nome, sku, segmento, listaDeProdutos.Count + 1, 
-                material, cor, marca, modelo, tamanho);
+            novoProduto.Cadastrar(listaDeProdutos.Count + 1, valorVenda, nome, sku, segmento, 
+                listaDeProdutos.Count + 1, material, cor, marca, modelo, tamanho);
 
             if (VerificarDuplicidade(novoProduto))
             {
@@ -30,6 +30,20 @@ namespace TechStyle.Dominio.Repositorio
 
             listaDeProdutos.Add(novoProduto);
 
+            return true;
+        }
+
+        public bool AtualizarProduto(string sku, decimal valorVenda, string nome, Segmento segmento,
+            string material, string cor, string marca, string modelo, string tamanho)
+        {
+            var produto = SelecionarPorSKU(sku);
+
+            if (!VerificarDuplicidade(produto) || ExisteAlteracao(nome, material, cor, marca, modelo, tamanho))
+            {
+                return false;
+            }
+
+            produto.Alterar(valorVenda, nome, segmento, material, cor, marca, modelo, tamanho);
             return true;
         }
 
@@ -51,9 +65,30 @@ namespace TechStyle.Dominio.Repositorio
             return listaDeProdutos.Where(x => x.Nome.Trim().ToUpper() == nome.Trim().ToUpper()).ToList();
         }
 
+        public List<Produto> SelecionarTudo()
+        {
+            return listaDeProdutos.OrderBy(x => x.Nome).ToList();
+        }
+
         private bool VerificarDuplicidade(Produto produto)
         {
-            return listaDeProdutos.Any(x => x.SKU.Trim().ToLower() == produto.SKU.Trim().ToLower());
+            return listaDeProdutos.Any(x => x.Nome.Trim().ToLower() == produto.Nome.Trim().ToLower() 
+            && x.DetalheProduto.Material.Trim().ToLower() == produto.DetalheProduto.Material.Trim().ToLower()
+            && x.DetalheProduto.Cor.Trim().ToLower() == produto.DetalheProduto.Cor.Trim().ToLower()
+            && x.DetalheProduto.Marca.Trim().ToLower() == produto.DetalheProduto.Marca.Trim().ToLower()
+            && x.DetalheProduto.Modelo.Trim().ToLower() == produto.DetalheProduto.Modelo.Trim().ToLower()
+            && x.DetalheProduto.Tamanho.Trim().ToLower() == produto.DetalheProduto.Tamanho.Trim().ToLower()
+            );
+        }
+
+        private bool ExisteAlteracao(string nome, string material, string cor, string marca, string modelo, string tamanho)
+        {
+            return listaDeProdutos.Any(x => x.Nome.ToUpper() == nome.Trim().ToUpper()
+                                            && x.DetalheProduto.Material.ToUpper() == material.Trim().ToUpper()
+                                            && x.DetalheProduto.Cor.ToUpper() == cor.Trim().ToUpper()
+                                            && x.DetalheProduto.Marca.ToUpper() == marca.Trim().ToUpper()
+                                            && x.DetalheProduto.Modelo.ToUpper() == modelo.Trim().ToUpper()
+                                            && x.DetalheProduto.Tamanho.ToUpper() == tamanho.Trim().ToUpper());
         }
     }
 }

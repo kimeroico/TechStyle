@@ -79,6 +79,5 @@ namespace TechStyle.Dominio.Repositorio
             return listaDeSegmentos.Any(x => x.Categoria.ToUpper() == categoria.Trim().ToUpper()
                                             && x.Subcategoria.ToUpper() == subcategoria.Trim().ToUpper());
         }
-
     }
 }

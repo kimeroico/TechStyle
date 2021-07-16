@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace TechStyle.Dominio.Modelo
 {
-    class Produto
+    public class Produto
     {
+        public int Id { get; set; }
         public decimal ValorVenda { get; private set; }
         public string Nome { get; private set; }
         public string SKU { get; private set; }
@@ -20,14 +21,15 @@ namespace TechStyle.Dominio.Modelo
             DetalheProduto = new DetalheProduto();
         }
 
-        internal void Cadastrar(decimal valorVenda, string nome, string sku, Segmento segmento, 
-            int id, string material, string cor, string marca, string modelo, string tamanho)
+        internal void Cadastrar(int id, decimal valorVenda, string nome, string sku, Segmento segmento, 
+            int idDetalhe, string material, string cor, string marca, string modelo, string tamanho)
         {
+            Id = id;
             ValorVenda = valorVenda;
             Nome = nome;
             SKU = sku;
             Segmento = segmento;
-            DetalheProduto.Cadastrar(id, material, cor, marca, modelo, tamanho);
+            DetalheProduto.Cadastrar(idDetalhe, material, cor, marca, modelo, tamanho);
             Ativo = false;
 
             // ValidarDuplicidade
@@ -46,7 +48,6 @@ namespace TechStyle.Dominio.Modelo
         {
             ValorVenda = (valorVenda <= 0) ? ValorVenda : valorVenda;
             Nome = string.IsNullOrEmpty(nome.Trim()) ? Nome : nome;
-            //SKU = string.IsNullOrEmpty(sku.Trim()) ? SKU : sku;
             Segmento = (segmento == null) ? Segmento : segmento;
             DetalheProduto.Alterar(material, cor, marca, modelo, tamanho);
         }

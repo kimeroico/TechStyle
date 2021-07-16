@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TechStyle.Dominio.Modelo
 {
-    class DetalheProduto
+    public class DetalheProduto
     {
         public int Id { get; set; }
         public string Material { get; set; }
@@ -32,7 +32,12 @@ namespace TechStyle.Dominio.Modelo
             Marca = string.IsNullOrEmpty(marca.Trim()) ? Marca : marca;
             Modelo = string.IsNullOrEmpty(modelo.Trim()) ? Modelo : modelo;
             Tamanho = string.IsNullOrEmpty(tamanho.Trim()) ? Tamanho : tamanho;
-        }        
+        }
+
+        public override string ToString()
+        {
+            return $"{Material} | {Cor} | {Marca} | {Modelo} | {Tamanho}";
+        }
 
     }
 }
