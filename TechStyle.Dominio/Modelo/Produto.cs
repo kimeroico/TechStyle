@@ -56,5 +56,10 @@ namespace TechStyle.Dominio.Modelo
         {
             Ativo = ativo;
         }
+
+        public override string ToString()
+        {
+            return $"{ValorVenda} | {Nome} | {SKU} | {Segmento} | {DetalheProduto}";
+        }
     }
 }

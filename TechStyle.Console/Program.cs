@@ -7,6 +7,45 @@ namespace TechStyle.UI
     {
         static void Main(string[] args)
         {
+            
+        }
+
+        public void TesteEstoque()
+        {
+            SegmentoRepositorio repoSeg = new SegmentoRepositorio();
+            repoSeg.Incluir("Masculino", "Social");
+
+            ProdutoRepositorio produtoRepositorio = new ProdutoRepositorio();
+            produtoRepositorio.Incluir(50, "Calca Jeans", "LO37KZ", repoSeg.SelecionarPorId(1), "Jeans", "Azul Claro", "Hering", "Skinny", "48");
+
+            Console.WriteLine("Vamos adicionar o produto no estoque!");
+            Console.Write("Quantidade Mínima do Produto: ");
+            var qMinima = int.Parse(Console.ReadLine());
+            Console.Write("Local do Produto: ");
+            var local = Console.ReadLine();
+            Console.Write("Quantidade no estoque: ");
+            var qLocal = int.Parse(Console.ReadLine());
+            Console.Write("Quantidade Total do produto: ");
+            var qTotal = int.Parse(Console.ReadLine());
+            Console.Write("Produto: ");
+            var produto = produtoRepositorio.SelecionarPorSKU(Console.ReadLine());
+
+            EstoqueRepositorio estoque = new EstoqueRepositorio();
+            estoque.IncluirNoEstoque(qMinima, local, qLocal, qTotal, produto);
+
+            Console.WriteLine("Você deseja visualizar os produtos em estoque? s/n");
+            var condicao = Console.ReadLine();
+            if (condicao == "s")
+            {
+                var resultado = estoque.SelecionarTudo();
+                foreach (var i in resultado)
+                {
+                    Console.WriteLine($"{i.QuantidadeMinima} | {i.Local} | {i.QuantidadeLocal} | {i.QuantidadeTotal} | {i.Produto}");
+                }
+            }
+        }
+        public void TesteProduto()
+        {
             SegmentoRepositorio repoSeg = new SegmentoRepositorio();
             repoSeg.Incluir("Masculino", "Social");
 
@@ -66,7 +105,7 @@ namespace TechStyle.UI
             Console.Write("Tamanho: ");
             var tamanhoNovo = Console.ReadLine();
 
-            produtoRepositorio.AtualizarProduto(skuSelecionado, valorNovo, nomeNovo, segmentoNovo, 
+            produtoRepositorio.AtualizarProduto(skuSelecionado, valorNovo, nomeNovo, segmentoNovo,
                 materialNovo, corNovo, marcaNovo, modeloNovo, tamanhoNovo);
 
             Console.WriteLine("Você deseja visualizar os produtos? s/n");
@@ -79,9 +118,7 @@ namespace TechStyle.UI
                     Console.WriteLine($"{i.ValorVenda} | {i.Nome} | {i.SKU} | {i.Segmento} | {i.DetalheProduto} | {i.Ativo}");
                 }
             }
-
         }
-
         public void TesteSegmento()
         {
             /*
@@ -93,42 +130,42 @@ namespace TechStyle.UI
 
             // digitou 1
 
-            //Console.WriteLine("Informe a categoria");
-            //var categoria = Console.ReadLine();
+            Console.WriteLine("Informe a categoria");
+            var categoria = Console.ReadLine();
 
-            //Console.WriteLine("Informe a subcategoria");
-            //var subcategoria = Console.ReadLine();
+            Console.WriteLine("Informe a subcategoria");
+            var subcategoria = Console.ReadLine();
 
-            //SegmentoRepositorio repoSeg = new SegmentoRepositorio();
+            SegmentoRepositorio repoSeg = new SegmentoRepositorio();
 
-            ////repoSeg.Incluir(categoria, subcategoria);
-            //repoSeg.Incluir("Masculino", "Social");
-            //repoSeg.Incluir("Infantil", "fantasias");
-            //repoSeg.Incluir("Feminino", "Social");
-            //repoSeg.Incluir("Feminino", "Saias");
+            //repoSeg.Incluir(categoria, subcategoria);
+            repoSeg.Incluir("Masculino", "Social");
+            repoSeg.Incluir("Infantil", "fantasias");
+            repoSeg.Incluir("Feminino", "Social");
+            repoSeg.Incluir("Feminino", "Saias");
 
-            //Console.WriteLine("Você deseja consultar o codigo da categoria/subcategoria ? s/n");
-            //var resposta = Console.ReadLine();
-            //if (resposta == "s")
-            //{
-            //    var resultadoConsulta = repoSeg.SelecionarTudo();
-            //    foreach (var item in resultadoConsulta)
-            //    {
-            //        Console.WriteLine($"{item.Id} - {item.Categoria} / {item.Subcategoria}");
-            //    }
-            //}
+            Console.WriteLine("Você deseja consultar o codigo da categoria/subcategoria ? s/n");
+            var resposta = Console.ReadLine();
+            if (resposta == "s")
+            {
+                var resultadoConsulta = repoSeg.SelecionarTudo();
+                foreach (var item in resultadoConsulta)
+                {
+                    Console.WriteLine($"{item.Id} - {item.Categoria} / {item.Subcategoria}");
+                }
+            }
 
-            //Console.WriteLine("Informe o codigo desejado");
-            //var idSeg = int.Parse(Console.ReadLine());
+            Console.WriteLine("Informe o codigo desejado");
+            var idSeg = int.Parse(Console.ReadLine());
 
-            //var segmento = repoSeg.SelecionarPorId(idSeg);
+            var segmento = repoSeg.SelecionarPorId(idSeg);
 
-            //Console.WriteLine(segmento.Ativo);
-            //Console.WriteLine("------------------------");
+            Console.WriteLine(segmento.Ativo);
+            Console.WriteLine("------------------------");
             //var statusAlterado = repoSeg.AlterarStatus(idSeg);
-            //Console.WriteLine(segmento.Ativo);
+            Console.WriteLine(segmento.Ativo);
 
-            //var lstSeg = repoSeg.SelecionarTudo();
+            var lstSeg = repoSeg.SelecionarTudo();
 
             // ---------------------------------------------
 
@@ -138,51 +175,51 @@ namespace TechStyle.UI
             //Segmento seg = new Segmento();
             //seg.Cadastrar(2, "Calcados", "tenis");
 
-            //Console.WriteLine("Você deseja consultar o codigo da categoria/subcategoria ? s/n");
+            Console.WriteLine("Você deseja consultar o codigo da categoria/subcategoria ? s/n");
             //var resposta = Console.ReadLine();
-            //if (resposta == "s")
-            //{
-            //    var resultadoConsulta = repoSeg.SelecionarTudo();
-            //    foreach (var item in resultadoConsulta)
-            //    {
-            //        Console.WriteLine($"{item.Id} - {item.Categoria} / {item.Subcategoria}");
-            //    }
-            //}
+            if (resposta == "s")
+            {
+                var resultadoConsulta = repoSeg.SelecionarTudo();
+                foreach (var item in resultadoConsulta)
+                {
+                    Console.WriteLine($"{item.Id} - {item.Categoria} / {item.Subcategoria}");
+                }
+            }
 
-            //Console.WriteLine("Informe o codigo desejado");
+            Console.WriteLine("Informe o codigo desejado");
             //var idSeg = int.Parse(Console.ReadLine());
 
             //var segmento = repoSeg.SelecionarPorId(idSeg);
 
-            //Console.WriteLine($"{segmento.Id} - {segmento.Categoria} / {segmento.Subcategoria}");
+            Console.WriteLine($"{segmento.Id} - {segmento.Categoria} / {segmento.Subcategoria}");
 
-            //Console.WriteLine("------------------------------------------------------------------------");
+            Console.WriteLine("------------------------------------------------------------------------");
 
-            //Console.WriteLine("Vc deseja alterar algum produto? s/n");
-            //var resposta2 = Console.ReadLine();
-            //if (resposta2 == "s")
-            //{
-            //    var resultadoConsulta = repoSeg.SelecionarTudo();
-            //    foreach (var item in resultadoConsulta)
-            //    {
-            //        Console.WriteLine($"{item.Id} - {item.Categoria} / {item.Subcategoria}");
-            //    }
-            //}
-            //Console.WriteLine("Informe o codigo desejado");
-            //var idSeg2 = int.Parse(Console.ReadLine());
+            Console.WriteLine("Vc deseja alterar algum produto? s/n");
+            var resposta2 = Console.ReadLine();
+            if (resposta2 == "s")
+            {
+                var resultadoConsulta = repoSeg.SelecionarTudo();
+                foreach (var item in resultadoConsulta)
+                {
+                    Console.WriteLine($"{item.Id} - {item.Categoria} / {item.Subcategoria}");
+                }
+            }
+            Console.WriteLine("Informe o codigo desejado");
+            var idSeg2 = int.Parse(Console.ReadLine());
 
-            //Console.WriteLine("Adicione a nova categoria:");
-            //var novaCategoria = Console.ReadLine();
+            Console.WriteLine("Adicione a nova categoria:");
+            var novaCategoria = Console.ReadLine();
 
-            //Console.WriteLine("Adicione a nova subcategoria");
-            //var novaSubcategoria = Console.ReadLine();
+            Console.WriteLine("Adicione a nova subcategoria");
+            var novaSubcategoria = Console.ReadLine();
 
 
-            //var segmentoAlterado = repoSeg.Alterar(idSeg2, novaCategoria, novaSubcategoria);
+            var segmentoAlterado = repoSeg.Alterar(idSeg2, novaCategoria, novaSubcategoria);
 
-            //var segmento2 = repoSeg.SelecionarPorId(idSeg2);
+            var segmento2 = repoSeg.SelecionarPorId(idSeg2);
 
-            //Console.WriteLine($"{segmento2.Id} - {segmento2.Categoria} / {segmento2.Subcategoria}");
+            Console.WriteLine($"{segmento2.Id} - {segmento2.Categoria} / {segmento2.Subcategoria}");
 
 
 

@@ -19,6 +19,7 @@ namespace TechStyle.Dominio.Repositorio
         public bool Incluir(decimal valorVenda, string nome, string sku, Segmento segmento, 
             string material, string cor, string marca, string modelo, string tamanho)
         {
+
             var novoProduto = new Produto();
             novoProduto.Cadastrar(listaDeProdutos.Count + 1, valorVenda, nome, sku, segmento, 
                 listaDeProdutos.Count + 1, material, cor, marca, modelo, tamanho);
