@@ -24,7 +24,7 @@ namespace TechStyle.Dominio.Modelo
         internal void Alterar(int quantidadeLocal, int quantidadeMinima)
         {
             QuantidadeLocal = (quantidadeLocal < 0) || (quantidadeLocal < quantidadeMinima) ? QuantidadeLocal : quantidadeLocal;
-            QuantidadeMinima = (quantidadeMinima < 0) ? QuantidadeLocal : quantidadeMinima;
+            QuantidadeMinima = (quantidadeMinima < 0) ? QuantidadeMinima : quantidadeMinima;
         }
 
         internal void SolicitarProdutoEstoque(int quantidade)
