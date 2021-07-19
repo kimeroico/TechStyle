@@ -9,14 +9,14 @@ namespace TechStyle.Dominio.Modelo
     public class Loja
     {
         public int Id { get; set; }
-        public Produto Produto { get; set; }
+        public int IdProduto { get; set; }
         public int QuantidadeLocal { get; set; }
         public int QuantidadeMinima { get; set; }
 
-        internal void Cadastrar(int id, Produto produto, int quantidadeLocal, int quantidadeMinima)
+        internal void Cadastrar(int id, int idProduto, int quantidadeLocal, int quantidadeMinima)
         {
             Id = id;
-            Produto = produto;
+            IdProduto = idProduto;
             QuantidadeLocal = quantidadeLocal;
             QuantidadeMinima = quantidadeMinima;
         }

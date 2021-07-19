@@ -32,10 +32,10 @@ namespace TechStyle.Dominio.Repositorio
             return true;
         }
 
-        public bool AtualizarProduto(string sku, decimal valorVenda, string nome, Segmento segmento,
+        public bool AtualizarProduto(int id, decimal valorVenda, string nome, Segmento segmento,
             string material, string cor, string marca, string modelo, string tamanho)
         {
-            var produto = SelecionarPorSKU(sku);
+            var produto = SelecionarPorId(id);
 
             if (!VerificarDuplicidade(produto) || ExisteAlteracao(nome, material, cor, marca, modelo, tamanho))
             {
@@ -46,12 +46,17 @@ namespace TechStyle.Dominio.Repositorio
             return true;
         }
 
-        public void AlterarStatus(string sku)
+        public void AlterarStatus(int id)
         {
-            var produto = SelecionarPorSKU(sku);
+            var produto = SelecionarPorId(id);
             var status = produto.Ativo;
             produto.AlterarStatus(!status);
 
+        }
+
+        public Produto SelecionarPorId(int id)
+        {
+            return listaDeProdutos.FirstOrDefault(x => x.Id == id);
         }
 
         public Produto SelecionarPorSKU(string sku)

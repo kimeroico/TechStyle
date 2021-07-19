@@ -16,12 +16,12 @@ namespace TechStyle.Dominio.Repositorio
             listaDaLoja = new List<Loja>();
         }
 
-        public bool Incluir(Produto produto, int quantidadeLocal, int quantidadeMinima)
+        public bool Incluir(int idProduto, int quantidadeLocal, int quantidadeMinima)
         {
             var produtoLoja = new Loja();
-            produtoLoja.Cadastrar(listaDaLoja.Count + 1, produto, quantidadeLocal, quantidadeMinima);
+            produtoLoja.Cadastrar(listaDaLoja.Count + 1, idProduto, quantidadeLocal, quantidadeMinima);
 
-            if (ValidandoDuplicidade(produtoLoja))
+            if (ValidandoDuplicidade(produtoLoja.IdProduto))
             {
                 return false;
             }
@@ -30,9 +30,31 @@ namespace TechStyle.Dominio.Repositorio
             return true;
         }
 
-        private bool ValidandoDuplicidade(Loja loja)
+        public bool Alterar(int idProduto, int quantidadeLocal, int quantidadeMinima)
         {
-            return listaDaLoja.Any(x => x.Produto == loja.Produto);
+            var objeto = SelecionePorIdProduto(idProduto);
+            if (!ValidandoDuplicidade(objeto.IdProduto))
+            {
+                return false;
+            }
+
+            objeto.Alterar(quantidadeLocal, quantidadeMinima);
+            return true;
+        }
+
+        public Loja SelecionePorIdProduto(int idProduto)
+        {
+            return listaDaLoja.FirstOrDefault(x => x.IdProduto == idProduto);
+        }
+
+        public Loja SelecionePorId(int id)
+        {
+            return listaDaLoja.FirstOrDefault(x => x.Id == id);
+        }
+
+        private bool ValidandoDuplicidade(int idProduto)
+        {
+            return listaDaLoja.Any(x => x.IdProduto == idProduto);
         }
         
     }
