@@ -42,6 +42,12 @@ namespace TechStyle.Dominio.Repositorio
             return true;
         }
 
+        public void ReceberProdutoDoEstoque(int id, int quantidadeRecebida)
+        {
+            var produto = SelecionePorIdProduto(id);
+            produto.AdicionarProduto(quantidadeRecebida);
+        }
+
         public Loja SelecionePorIdProduto(int idProduto)
         {
             return listaDaLoja.FirstOrDefault(x => x.IdProduto == idProduto);

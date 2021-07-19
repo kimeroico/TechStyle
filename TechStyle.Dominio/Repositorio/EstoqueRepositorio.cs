@@ -44,17 +44,20 @@ namespace TechStyle.Dominio.Repositorio
             return true;
         }
 
-        public bool TransferenciaParaLoja(int id, int quantidade)
+        public bool TransferenciaParaLoja(int id, int quantidade, LojaRepositorio listaLoja)
         {
             var produtoEmEstoque = SelecionarPorId(id);
+            
 
             if (VerificacaoDeQuantidade(produtoEmEstoque, quantidade))
             {
                 return false;
             }
-
+                        
             produtoEmEstoque.TransferirProdutoParaLoja(quantidade);
+            var prodId = produtoEmEstoque.Produto.Id;
 
+            listaLoja.ReceberProdutoDoEstoque(prodId, quantidade);
             return true;
         }
 

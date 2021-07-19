@@ -27,7 +27,7 @@ namespace TechStyle.Dominio.Modelo
             QuantidadeMinima = (quantidadeMinima < 0) ? QuantidadeMinima : quantidadeMinima;
         }
 
-        internal void SolicitarProdutoEstoque(int quantidade)
+        internal void AdicionarProduto(int quantidade)
         {
             QuantidadeLocal += quantidade;
         }
