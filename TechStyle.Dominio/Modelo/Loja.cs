@@ -10,6 +10,7 @@ namespace TechStyle.Dominio.Modelo
     {
         public int Id { get; set; }
         public int IdProduto { get; set; }
+        public Produto Produto { get; set; }
         public int QuantidadeLocal { get; set; }
         public int QuantidadeMinima { get; set; }
 
