@@ -6,19 +6,21 @@ using System.Threading.Tasks;
 
 namespace TechStyle.Dominio.Modelo
 {
-    class ItemVendas
+    public class ItemVendas
     {
         public int Id { get; set; }
-        public int IdVenda { get; set; }
+        public int IdVendas { get; set; }
+        public Vendas Vendas { get; set; }
         public int IdProduto { get; set; }
+        public Produto Produto { get; set; }
         public decimal ValorUnitario { get; set; }
         public int Quantidade { get; set; }
 
-        internal void Cadastrar(int id, int idVenda, int idProduto, decimal valorUnitario, int quantidade)
+        internal void Cadastrar(int id, Vendas idVenda, Produto idProduto, decimal valorUnitario, int quantidade)
         {
             Id = id;
-            IdVenda = idVenda;
-            IdProduto = idProduto;
+            Vendas = idVenda;
+            Produto = idProduto;
             ValorUnitario = valorUnitario;
             Quantidade = quantidade;
         }

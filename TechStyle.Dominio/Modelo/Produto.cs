@@ -12,9 +12,12 @@ namespace TechStyle.Dominio.Modelo
         public decimal ValorVenda { get; private set; }
         public string Nome { get; private set; }
         public string SKU { get; private set; }
+        public int IdSegmento { get; set; }
         public Segmento Segmento { get; private set; }
         public DetalheProduto DetalheProduto { get; private set; }
         public bool Ativo { get; private set; }
+
+        public List<ItemVendas> ItemVendas { get; set; }
 
         public Produto()
         {

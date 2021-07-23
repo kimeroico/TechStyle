@@ -12,6 +12,7 @@ namespace TechStyle.Dominio.Modelo
         public string Categoria { get; set; }
         public string Subcategoria { get; set; }
         public bool Ativo { get; set; }
+        public List<Produto> Produtos { get; set; }
 
         internal void Cadastrar(int id, string categoria, string subcategoria)
         {

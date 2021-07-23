@@ -13,6 +13,8 @@ namespace TechStyle.Dominio.Modelo
         public decimal Desconto { get; set; }
         public DateTime DataDaVenda { get; set; }
 
+        public List<ItemVendas> ItemVendas { get; set; }
+
         internal void Cadastrar(int id, decimal valorTotal, decimal desconto, DateTime dataDaVenda)
         {
             Id = id;

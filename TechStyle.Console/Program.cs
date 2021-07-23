@@ -85,7 +85,7 @@ namespace TechStyle.UI
 
             Console.WriteLine("-------------------------------------------------------------------------------------------------");
             Console.WriteLine("Selecione o Produto que será alterado:");
-            var skuSelecionado = Console.ReadLine();
+            var idProduto = int.Parse(Console.ReadLine());
 
             Console.WriteLine("Novos dados!");
             Console.Write("Valor de Mercado: ");
@@ -105,7 +105,7 @@ namespace TechStyle.UI
             Console.Write("Tamanho: ");
             var tamanhoNovo = Console.ReadLine();
 
-            produtoRepositorio.AtualizarProduto(skuSelecionado, valorNovo, nomeNovo, segmentoNovo,
+            produtoRepositorio.AtualizarProduto(idProduto, valorNovo, nomeNovo, segmentoNovo,
                 materialNovo, corNovo, marcaNovo, modeloNovo, tamanhoNovo);
 
             Console.WriteLine("Você deseja visualizar os produtos? s/n");
