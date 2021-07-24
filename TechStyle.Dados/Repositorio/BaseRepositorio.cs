@@ -5,7 +5,7 @@ using TechStyle.Dominio.Modelo;
 
 namespace TechStyle.Dados.Repositorio
 {
-    public class BaseRepositorio<T> where T : class, IEntity
+    public class BaseRepositorio<T> where T: class, IEntity
     {
         protected readonly Contexto contexto;
 
@@ -24,9 +24,10 @@ namespace TechStyle.Dados.Repositorio
             }
             catch (Exception e)
             {
+                // criar um log do erro log.salvar(e.Message);                
                 return false;
             }
-
+            
         }
 
         public virtual bool Alterar(T entity)

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace TechStyle.Dominio.Modelo
 {
@@ -16,8 +12,10 @@ namespace TechStyle.Dominio.Modelo
         public Segmento Segmento { get; private set; }
         public DetalheProduto DetalheProduto { get; private set; }
         public bool Ativo { get; private set; }
+        public Loja Loja { get; set; }
 
         public List<ItemVendas> ItemVendas { get; set; }
+        public ProdutoEmEstoque Estoque { get; set; }
 
         public ProdutoEmEstoque Estoque { get; set; }
 
@@ -35,6 +33,7 @@ namespace TechStyle.Dominio.Modelo
             SKU = sku;
             IdSegmento = idSegmento;
             Ativo = false;
+            IdSegmento = idSegmento;
 
             // ValidarDuplicidade
 

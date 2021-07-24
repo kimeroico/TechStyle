@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
 using TechStyle.Dados.Map;
 using TechStyle.Dominio.Modelo;
 
@@ -18,7 +17,7 @@ namespace TechStyle.Dados
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=KIMEROICO; Database=TechStyle; Trusted_Connection=True");
+            optionsBuilder.UseSqlServer("Server=ACNTB3RKLD53; Database=TechStyle; Trusted_Connection=True");
             base.OnConfiguring(optionsBuilder);
         }
 

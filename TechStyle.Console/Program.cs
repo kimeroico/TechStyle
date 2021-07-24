@@ -7,47 +7,47 @@ namespace TechStyle.UI
     {
         static void Main(string[] args)
         {
-            TesteSegmento();
+            //TesteSegmento();
+            TesteProduto();
         }
 
-        //public void TesteEstoque()
-        //{
-        //    SegmentoRepositorio repoSeg = new SegmentoRepositorio();
-        //    repoSeg.Incluir("Masculino", "Social");
+        public void TesteEstoque()
+        {
+            //SegmentoRepositorio repoSeg = new SegmentoRepositorio();
+            //repoSeg.Incluir("Masculino", "Social");
 
-        //    ProdutoRepositorio produtoRepositorio = new ProdutoRepositorio();
-        //    produtoRepositorio.Incluir(50, "Calca Jeans", "LO37KZ", repoSeg.SelecionarPorId(1), "Jeans", "Azul Claro", "Hering", "Skinny", "48");
+            //ProdutoRepositorio produtoRepositorio = new ProdutoRepositorio();
+            //produtoRepositorio.Incluir(50, "Calca Jeans", "LO37KZ", repoSeg.SelecionarPorId(1), "Jeans", "Azul Claro", "Hering", "Skinny", "48");
 
-        //    Console.WriteLine("Vamos adicionar o produto no estoque!");
-        //    Console.Write("Quantidade Mínima do Produto: ");
-        //    var qMinima = int.Parse(Console.ReadLine());
-        //    Console.Write("Local do Produto: ");
-        //    var local = Console.ReadLine();
-        //    Console.Write("Quantidade no estoque: ");
-        //    var qLocal = int.Parse(Console.ReadLine());
-        //    Console.Write("Quantidade Total do produto: ");
-        //    var qTotal = int.Parse(Console.ReadLine());
-        //    Console.Write("Produto: ");
-        //    var produto = produtoRepositorio.SelecionarPorSKU(Console.ReadLine());
+            //Console.WriteLine("Vamos adicionar o produto no estoque!");
+            //Console.Write("Quantidade Mínima do Produto: ");
+            //var qMinima = int.Parse(Console.ReadLine());
+            //Console.Write("Local do Produto: ");
+            //var local = Console.ReadLine();
+            //Console.Write("Quantidade no estoque: ");
+            //var qLocal = int.Parse(Console.ReadLine());
+            //Console.Write("Quantidade Total do produto: ");
+            //var qTotal = int.Parse(Console.ReadLine());
+            //Console.Write("Produto: ");
+            //var produto = produtoRepositorio.SelecionarPorSKU(Console.ReadLine());
 
-        //    EstoqueRepositorio estoque = new EstoqueRepositorio();
-        //    estoque.IncluirNoEstoque(qMinima, local, qLocal, qTotal, produto);
+            //EstoqueRepositorio estoque = new EstoqueRepositorio();
+            //estoque.IncluirNoEstoque(qMinima, local, qLocal, qTotal, produto);
 
-        //    Console.WriteLine("Você deseja visualizar os produtos em estoque? s/n");
-        //    var condicao = Console.ReadLine();
-        //    if (condicao == "s")
-        //    {
-        //        var resultado = estoque.SelecionarTudo();
-        //        foreach (var i in resultado)
-        //        {
-        //            Console.WriteLine($"{i.QuantidadeMinima} | {i.Local} | {i.QuantidadeLocal} | {i.QuantidadeTotal} | {i.Produto}");
-        //        }
-        //    }
-        //}
-        //public void TesteProduto()
-        //{
-        //    SegmentoRepositorio repoSeg = new SegmentoRepositorio();
-        //    repoSeg.Incluir("Masculino", "Social");
+            //Console.WriteLine("Você deseja visualizar os produtos em estoque? s/n");
+            //var condicao = Console.ReadLine();
+            //if (condicao == "s")
+            //{
+            //    var resultado = estoque.SelecionarTudo();
+            //    foreach (var i in resultado)
+            //    {
+            //        Console.WriteLine($"{i.QuantidadeMinima} | {i.Local} | {i.QuantidadeLocal} | {i.QuantidadeTotal} | {i.Produto}");
+            //    }
+            //}
+        }
+        public static void TesteProduto()
+        {
+            SegmentoRepositorio repoSeg = new SegmentoRepositorio();            
 
         //    Console.WriteLine("Vamos adicionar um produto!");
         //    Console.Write("Valor de Mercado: ");
@@ -105,20 +105,21 @@ namespace TechStyle.UI
         //    Console.Write("Tamanho: ");
         //    var tamanhoNovo = Console.ReadLine();
 
-        //    produtoRepositorio.AtualizarProduto(idProduto, valorNovo, nomeNovo, segmentoNovo,
-        //        materialNovo, corNovo, marcaNovo, modeloNovo, tamanhoNovo);
+            //produtoRepositorio.AtualizarProduto(idProduto, valorNovo, nomeNovo, segmentoNovo,
+            //    materialNovo, corNovo, marcaNovo, modeloNovo, tamanhoNovo);
 
-        //    Console.WriteLine("Você deseja visualizar os produtos? s/n");
-        //    condicao = Console.ReadLine();
-        //    if (condicao == "s")
-        //    {
-        //        var resultado = produtoRepositorio.SelecionarTudo();
-        //        foreach (var i in resultado)
-        //        {
-        //            Console.WriteLine($"{i.ValorVenda} | {i.Nome} | {i.SKU} | {i.Segmento} | {i.DetalheProduto} | {i.Ativo}");
-        //        }
-        //    }
-        //}
+            //Console.WriteLine("Você deseja visualizar os produtos? s/n");
+            //condicao = Console.ReadLine();
+            //if (condicao == "s")
+            //{
+            //    var resultado = produtoRepositorio.SelecionarTudo();
+            //    foreach (var i in resultado)
+            //    {
+            //        Console.WriteLine($"{i.ValorVenda} | {i.Nome} | {i.SKU} | {i.Segmento} | {i.DetalheProduto} | {i.Ativo}");
+            //    }
+            //}
+        }
+
         public static void TesteSegmento()
         {
             /*

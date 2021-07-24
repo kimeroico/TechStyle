@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TechStyle.Dominio.Modelo
 {
@@ -12,7 +8,7 @@ namespace TechStyle.Dominio.Modelo
         public int IdProduto { get; set; }
         public Produto Produto { get; set; }
         public int QuantidadeLocal { get; set; }
-        public int QuantidadeMinima { get; set; }
+        public int QuantidadeMinima { get; set; }        
 
         public void Cadastrar(int id, int idProduto, int quantidadeLocal, int quantidadeMinima)
         {

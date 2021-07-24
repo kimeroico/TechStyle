@@ -4,10 +4,10 @@ namespace TechStyle.Dominio.Modelo
 {
     public class Segmento : IEntity
     {
-        public int Id { get; set; }
-        public string Categoria { get; set; }
-        public string Subcategoria { get; set; }
-        public bool Ativo { get; set; }
+        public int Id { get; private set; }
+        public string Categoria { get; private set; }
+        public string Subcategoria { get; private set; }
+        public bool Ativo { get; private set; }
         public List<Produto> Produtos { get; set; }
 
         public void Cadastrar(string categoria, string subcategoria)

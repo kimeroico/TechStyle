@@ -12,7 +12,7 @@ namespace TechStyle.Dados.Repositorio
         internal bool Incluir(string material, string cor, string marca, string modelo, string tamanho, int idProduto)
         {
             DetalheProduto novoDetalhe = new DetalheProduto();
-            novoDetalhe.Cadastrar(material, cor, marca, modelo, tamanho, idProduto);
+            novoDetalhe.Cadastrar(idProduto, material, cor, marca, modelo, tamanho);
 
             return base.Incluir(novoDetalhe);
         }
