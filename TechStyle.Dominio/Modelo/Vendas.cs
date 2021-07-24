@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TechStyle.Dominio.Modelo
 {
-    public class Vendas
+    public class Vendas : IEntity
     {
         public int Id { get; set; }
         public decimal ValorTotal { get; set; }
@@ -15,7 +12,7 @@ namespace TechStyle.Dominio.Modelo
 
         public List<ItemVendas> ItemVendas { get; set; }
 
-        internal void Cadastrar(int id, decimal valorTotal, decimal desconto, DateTime dataDaVenda)
+        public void Cadastrar(int id, decimal valorTotal, decimal desconto, DateTime dataDaVenda)
         {
             Id = id;
             ValorTotal = valorTotal;

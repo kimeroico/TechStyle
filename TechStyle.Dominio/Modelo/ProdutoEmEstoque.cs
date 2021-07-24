@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TechStyle.Dominio.Modelo
 {
-    public class ProdutoEmEstoque
+    public class ProdutoEmEstoque : IEntity
     {
         public int Id { get; set; }
         public int QuantidadeMinima { get; set; }
@@ -14,8 +10,9 @@ namespace TechStyle.Dominio.Modelo
         public int QuantidadeLocal { get; set; }
         public int QuantidadeTotal { get; set; }
         public Produto Produto { get; set; }
+        public int IdProduto { get; set; }
 
-        internal void Cadastrar(int id, int quantidadeMinima, string local, int quantidadeLocal, 
+        public void Cadastrar(int id, int quantidadeMinima, string local, int quantidadeLocal, 
             int quantidadeTotal, Produto produto)
         {
             Id = id;
@@ -26,7 +23,7 @@ namespace TechStyle.Dominio.Modelo
             Produto = produto;
         }
 
-        internal void AlterarEstoque(int quantidadeMinima, string local, int quantidadeLocal, int quantidadeTotal)
+        public void AlterarEstoque(int quantidadeMinima, string local, int quantidadeLocal, int quantidadeTotal)
         {
             QuantidadeMinima = (quantidadeMinima <= 0) ? QuantidadeMinima : quantidadeMinima;
             Local = string.IsNullOrEmpty(local.Trim()) ? Local : local;
@@ -34,7 +31,7 @@ namespace TechStyle.Dominio.Modelo
             QuantidadeTotal = (quantidadeTotal <= 0) ? QuantidadeTotal : quantidadeTotal;
         }
 
-        internal void NotificarNecessidadeDeCompra()
+        public void NotificarNecessidadeDeCompra()
         {
             if (QuantidadeTotal == QuantidadeMinima)
             {
@@ -43,12 +40,12 @@ namespace TechStyle.Dominio.Modelo
             }
         }
 
-        internal void TransferirProdutoParaLoja(int numeroDePecas)
+        public void TransferirProdutoParaLoja(int numeroDePecas)
         {
             QuantidadeLocal -= numeroDePecas;
         }
 
-        internal void IncluirQuantidade(int numeroDePecas)
+        public void IncluirQuantidade(int numeroDePecas)
         {
             QuantidadeLocal += numeroDePecas;
             QuantidadeTotal += numeroDePecas;

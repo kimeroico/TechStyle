@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace TechStyle.Dominio.Modelo
 {
-    public class Produto
+    public class Produto : IEntity
     {
         public int Id { get; set; }
         public decimal ValorVenda { get; private set; }
@@ -16,24 +12,23 @@ namespace TechStyle.Dominio.Modelo
         public Segmento Segmento { get; private set; }
         public DetalheProduto DetalheProduto { get; private set; }
         public bool Ativo { get; private set; }
+        public Loja Loja { get; set; }
 
         public List<ItemVendas> ItemVendas { get; set; }
+        public ProdutoEmEstoque Estoque { get; set; }
 
         public Produto()
         {
             DetalheProduto = new DetalheProduto();
         }
 
-        internal void Cadastrar(int id, decimal valorVenda, string nome, string sku, Segmento segmento, 
-            int idDetalhe, string material, string cor, string marca, string modelo, string tamanho)
-        {
-            Id = id;
+        public void Cadastrar(decimal valorVenda, string nome, string sku, int idSegmento)
+        {            
             ValorVenda = valorVenda;
             Nome = nome;
-            SKU = sku;
-            Segmento = segmento;
-            DetalheProduto.Cadastrar(idDetalhe, material, cor, marca, modelo, tamanho);
+            SKU = sku;                     
             Ativo = false;
+            IdSegmento = idSegmento;
 
             // ValidarDuplicidade
 
@@ -46,7 +41,7 @@ namespace TechStyle.Dominio.Modelo
             /* 5, moda feminina, lingerie */
         }
 
-        internal void Alterar(decimal valorVenda, string nome, Segmento segmento,
+        public void Alterar(decimal valorVenda, string nome, Segmento segmento,
             string material, string cor, string marca, string modelo, string tamanho)
         {
             ValorVenda = (valorVenda <= 0) ? ValorVenda : valorVenda;
@@ -55,7 +50,7 @@ namespace TechStyle.Dominio.Modelo
             DetalheProduto.Alterar(material, cor, marca, modelo, tamanho);
         }
 
-        internal void AlterarStatus(bool ativo)
+        public void AlterarStatus(bool ativo)
         {
             Ativo = ativo;
         }

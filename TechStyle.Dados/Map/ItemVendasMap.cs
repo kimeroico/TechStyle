@@ -16,7 +16,7 @@ namespace TechStyle.Dados.Map
             builder.ToTable("ItemVendas");
             builder.HasKey(x => x.Id);
             builder.Property(x => x.ValorUnitario).HasColumnType("decimal(10,2)").IsRequired();
-            builder.Property(x => x.Quantidade).HasColumnType("int(1000)").IsRequired();
+            builder.Property(x => x.Quantidade).HasColumnType("int").IsRequired();
         }
     }
 }

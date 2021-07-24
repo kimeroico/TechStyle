@@ -1,10 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TechStyle.Dominio.Modelo;
 
 namespace TechStyle.Dados.Map
@@ -15,9 +10,14 @@ namespace TechStyle.Dados.Map
         {
             builder.ToTable("Loja");
             builder.HasKey(x => x.Id);
-            builder.Property(x => x.QuantidadeMinima).HasColumnType("int(1000)").IsRequired();
+            builder.Property(x => x.QuantidadeMinima).HasColumnType("int").IsRequired();
             builder.Property(x => x.IdProduto).HasColumnType("varchar(100)").IsRequired();
-            builder.Property(x => x.QuantidadeLocal).HasColumnType("int(1000)").IsRequired();
+            builder.Property(x => x.QuantidadeLocal).HasColumnType("int").IsRequired();
+            builder.Property(x => x.IdProduto).HasColumnType("int").IsRequired();
+
+            builder.HasOne<Produto>(p => p.Produto)
+                .WithOne(d => d.Loja)
+                .HasForeignKey<Loja>(i => i.IdProduto);
         }
     }
 }

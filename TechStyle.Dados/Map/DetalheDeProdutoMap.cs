@@ -1,10 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TechStyle.Dominio.Modelo;
 
 namespace TechStyle.Dados.Map
@@ -20,6 +15,10 @@ namespace TechStyle.Dados.Map
             builder.Property(x => x.Marca).HasColumnType("varchar(100)").IsRequired();
             builder.Property(x => x.Modelo).HasColumnType("varchar(100)").IsRequired();
             builder.Property(x => x.Tamanho).HasColumnType("varchar(100)").IsRequired();
+
+            builder.HasOne<Produto>(p => p.Produto)
+                .WithOne(d => d.DetalheProduto)
+                .HasForeignKey<DetalheProduto>(i => i.IdProduto);
 
         }
     }

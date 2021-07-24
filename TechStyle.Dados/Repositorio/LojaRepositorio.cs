@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TechStyle.Dominio.Modelo;
 
-namespace TechStyle.Dominio.Repositorio
+namespace TechStyle.Dados.Repositorio
 {
     public class LojaRepositorio
     {

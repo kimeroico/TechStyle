@@ -6,6 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\TechStyle.Dados\TechStyle.Dados.csproj" />
     <ProjectReference Include="..\TechStyle.Dominio\TechStyle.Dominio.csproj" />
   </ItemGroup>
 
