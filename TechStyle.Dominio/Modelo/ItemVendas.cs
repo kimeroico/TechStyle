@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TechStyle.Dominio.Modelo
 {
-    public class ItemVendas
+    public class ItemVendas : IEntity
     {
         public int Id { get; set; }
         public int IdVendas { get; set; }
@@ -16,7 +16,7 @@ namespace TechStyle.Dominio.Modelo
         public decimal ValorUnitario { get; set; }
         public int Quantidade { get; set; }
 
-        internal void Cadastrar(int id, Vendas idVenda, Produto idProduto, decimal valorUnitario, int quantidade)
+        public void Cadastrar(int id, Vendas idVenda, Produto idProduto, decimal valorUnitario, int quantidade)
         {
             Id = id;
             Vendas = idVenda;

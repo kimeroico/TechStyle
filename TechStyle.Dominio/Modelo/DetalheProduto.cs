@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TechStyle.Dominio.Modelo
 {
-    public class DetalheProduto
+    public class DetalheProduto : IEntity
     {
         public int Id { get; set; }
         public string Material { get; set; }
@@ -14,15 +14,17 @@ namespace TechStyle.Dominio.Modelo
         public string Marca { get; set; }
         public string Modelo { get; set; }
         public string Tamanho { get; set; }
+        public int IdProduto { get; set; }
+        public Produto Produto { get; set; }
 
-        public void Cadastrar(int id, string material, string cor, string marca, string modelo, string tamanho)
+        public void Cadastrar(string material, string cor, string marca, string modelo, string tamanho, int idProduto)
         {
-            Id = id;
             Material = material;
             Cor = cor;
             Marca = marca;
             Modelo = modelo;
             Tamanho = tamanho;
+            IdProduto = idProduto;
         }
 
         public void Alterar(string material, string cor, string marca, string modelo, string tamanho)

@@ -3,36 +3,26 @@ using System.Collections.Generic;
 using System.Linq;
 using TechStyle.Dominio.Modelo;
 
-namespace TechStyle.Dominio.Repositorio
+namespace TechStyle.Dados.Repositorio
 {
-    public class SegmentoRepositorio
+    public class SegmentoRepositorio : BaseRepositorio<Segmento>
     {
-        private List<Segmento> listaDeSegmentos;
-
-        public SegmentoRepositorio()
-        {
-            listaDeSegmentos = new List<Segmento>();
-        }
-
         public bool Incluir(string categoria, string subcategoria)
         {
             var segmento = new Segmento();
-            segmento.Cadastrar(listaDeSegmentos.Count + 1, categoria, subcategoria);
+            segmento.Cadastrar(categoria, subcategoria);
 
             if (Existe(segmento))
             {
                 return false;
             }
 
-            listaDeSegmentos.Add(segmento);
-            return true;
+            return base.Incluir(segmento);
         }
 
         public bool Alterar(int id, string categoria, string subcategoria)
         {
             var segmentoEncontrado = SelecionarPorId(id);
-            //var segmento = new Segmento();
-            //segmento.Cadastrar(listaDeSegmentos.Count + 1, categoria, subcategoria);
 
             if (!Existe(segmentoEncontrado) || ExisteAlteracao(categoria, subcategoria))
             {
@@ -40,43 +30,39 @@ namespace TechStyle.Dominio.Repositorio
             }
 
             segmentoEncontrado.Alterar(categoria, subcategoria);
-            return true;
+
+            return base.Alterar(segmentoEncontrado);
         }
 
         public void AlterarStatus(int id)
         {
             var segmentoEncontrado = SelecionarPorId(id);
-            var status = segmentoEncontrado.Ativo;        
+            segmentoEncontrado.AlterarStatus(!segmentoEncontrado.Ativo);
+            contexto.Segmento.Update(segmentoEncontrado);
+            contexto.SaveChanges();
 
-            segmentoEncontrado.AlterarStatus(!status);
-        }
-
-        public Segmento SelecionarPorId(int id)
-        {
-            return listaDeSegmentos.FirstOrDefault(x => x.Id == id);
+            base.Alterar(segmentoEncontrado);
         }
 
         public List<Segmento> SelecionarPorCategoria(string categoria)
         {
-            return listaDeSegmentos.Where(x => x.Categoria.ToUpper() == categoria.Trim().ToUpper()).ToList();
-        }
+            return contexto.Segmento.Where(x => x.Categoria.ToUpper() == categoria.Trim().ToUpper()).ToList();
+        }        
 
-        
-
-        public List<Segmento> SelecionarTudo()
+        public override List<Segmento> SelecionarTudo()
         {
-            return listaDeSegmentos.OrderBy(x => x.Categoria).ToList();
+            return base.SelecionarTudo().OrderBy(x => x.Categoria).ToList();
         }
 
         public bool Existe(Segmento segmento)
         {
-            return listaDeSegmentos.Any(x => x.Categoria.Trim().ToLower() == segmento.Categoria.Trim().ToLower()
+            return contexto.Segmento.Any(x => x.Categoria.Trim().ToLower() == segmento.Categoria.Trim().ToLower()
                                             && x.Subcategoria.Trim().ToLower() == segmento.Subcategoria.Trim().ToLower());
         }
 
         public bool ExisteAlteracao(string categoria, string subcategoria)
         {
-            return listaDeSegmentos.Any(x => x.Categoria.ToUpper() == categoria.Trim().ToUpper()
+            return contexto.Segmento.Any(x => x.Categoria.ToUpper() == categoria.Trim().ToUpper()
                                             && x.Subcategoria.ToUpper() == subcategoria.Trim().ToUpper());
         }
     }

@@ -1,5 +1,5 @@
 ﻿using System;
-using TechStyle.Dominio.Repositorio;
+using TechStyle.Dados.Repositorio;
 
 namespace TechStyle.UI
 {
@@ -7,119 +7,119 @@ namespace TechStyle.UI
     {
         static void Main(string[] args)
         {
-            
+            TesteSegmento();
         }
 
-        public void TesteEstoque()
-        {
-            SegmentoRepositorio repoSeg = new SegmentoRepositorio();
-            repoSeg.Incluir("Masculino", "Social");
+        //public void TesteEstoque()
+        //{
+        //    SegmentoRepositorio repoSeg = new SegmentoRepositorio();
+        //    repoSeg.Incluir("Masculino", "Social");
 
-            ProdutoRepositorio produtoRepositorio = new ProdutoRepositorio();
-            produtoRepositorio.Incluir(50, "Calca Jeans", "LO37KZ", repoSeg.SelecionarPorId(1), "Jeans", "Azul Claro", "Hering", "Skinny", "48");
+        //    ProdutoRepositorio produtoRepositorio = new ProdutoRepositorio();
+        //    produtoRepositorio.Incluir(50, "Calca Jeans", "LO37KZ", repoSeg.SelecionarPorId(1), "Jeans", "Azul Claro", "Hering", "Skinny", "48");
 
-            Console.WriteLine("Vamos adicionar o produto no estoque!");
-            Console.Write("Quantidade Mínima do Produto: ");
-            var qMinima = int.Parse(Console.ReadLine());
-            Console.Write("Local do Produto: ");
-            var local = Console.ReadLine();
-            Console.Write("Quantidade no estoque: ");
-            var qLocal = int.Parse(Console.ReadLine());
-            Console.Write("Quantidade Total do produto: ");
-            var qTotal = int.Parse(Console.ReadLine());
-            Console.Write("Produto: ");
-            var produto = produtoRepositorio.SelecionarPorSKU(Console.ReadLine());
+        //    Console.WriteLine("Vamos adicionar o produto no estoque!");
+        //    Console.Write("Quantidade Mínima do Produto: ");
+        //    var qMinima = int.Parse(Console.ReadLine());
+        //    Console.Write("Local do Produto: ");
+        //    var local = Console.ReadLine();
+        //    Console.Write("Quantidade no estoque: ");
+        //    var qLocal = int.Parse(Console.ReadLine());
+        //    Console.Write("Quantidade Total do produto: ");
+        //    var qTotal = int.Parse(Console.ReadLine());
+        //    Console.Write("Produto: ");
+        //    var produto = produtoRepositorio.SelecionarPorSKU(Console.ReadLine());
 
-            EstoqueRepositorio estoque = new EstoqueRepositorio();
-            estoque.IncluirNoEstoque(qMinima, local, qLocal, qTotal, produto);
+        //    EstoqueRepositorio estoque = new EstoqueRepositorio();
+        //    estoque.IncluirNoEstoque(qMinima, local, qLocal, qTotal, produto);
 
-            Console.WriteLine("Você deseja visualizar os produtos em estoque? s/n");
-            var condicao = Console.ReadLine();
-            if (condicao == "s")
-            {
-                var resultado = estoque.SelecionarTudo();
-                foreach (var i in resultado)
-                {
-                    Console.WriteLine($"{i.QuantidadeMinima} | {i.Local} | {i.QuantidadeLocal} | {i.QuantidadeTotal} | {i.Produto}");
-                }
-            }
-        }
-        public void TesteProduto()
-        {
-            SegmentoRepositorio repoSeg = new SegmentoRepositorio();
-            repoSeg.Incluir("Masculino", "Social");
+        //    Console.WriteLine("Você deseja visualizar os produtos em estoque? s/n");
+        //    var condicao = Console.ReadLine();
+        //    if (condicao == "s")
+        //    {
+        //        var resultado = estoque.SelecionarTudo();
+        //        foreach (var i in resultado)
+        //        {
+        //            Console.WriteLine($"{i.QuantidadeMinima} | {i.Local} | {i.QuantidadeLocal} | {i.QuantidadeTotal} | {i.Produto}");
+        //        }
+        //    }
+        //}
+        //public void TesteProduto()
+        //{
+        //    SegmentoRepositorio repoSeg = new SegmentoRepositorio();
+        //    repoSeg.Incluir("Masculino", "Social");
 
-            Console.WriteLine("Vamos adicionar um produto!");
-            Console.Write("Valor de Mercado: ");
-            var valor = decimal.Parse(Console.ReadLine());
-            Console.Write("Nome do Produto: ");
-            var nome = Console.ReadLine();
-            Console.Write("SKU: ");
-            var sku = Console.ReadLine();
-            Console.Write("Segmento do Produto: ");
-            var segmento = repoSeg.SelecionarPorId(int.Parse(Console.ReadLine()));
-            Console.Write("Material: ");
-            var material = Console.ReadLine();
-            Console.Write("Cor: ");
-            var cor = Console.ReadLine();
-            Console.Write("Marca: ");
-            var marca = Console.ReadLine();
-            Console.Write("Modelo: ");
-            var modelo = Console.ReadLine();
-            Console.Write("Tamanho: ");
-            var tamanho = Console.ReadLine();
+        //    Console.WriteLine("Vamos adicionar um produto!");
+        //    Console.Write("Valor de Mercado: ");
+        //    var valor = decimal.Parse(Console.ReadLine());
+        //    Console.Write("Nome do Produto: ");
+        //    var nome = Console.ReadLine();
+        //    Console.Write("SKU: ");
+        //    var sku = Console.ReadLine();
+        //    Console.Write("Segmento do Produto: ");
+        //    var segmento = repoSeg.SelecionarPorId(int.Parse(Console.ReadLine()));
+        //    Console.Write("Material: ");
+        //    var material = Console.ReadLine();
+        //    Console.Write("Cor: ");
+        //    var cor = Console.ReadLine();
+        //    Console.Write("Marca: ");
+        //    var marca = Console.ReadLine();
+        //    Console.Write("Modelo: ");
+        //    var modelo = Console.ReadLine();
+        //    Console.Write("Tamanho: ");
+        //    var tamanho = Console.ReadLine();
 
-            ProdutoRepositorio produtoRepositorio = new ProdutoRepositorio();
-            produtoRepositorio.Incluir(valor, nome, sku, segmento, material, cor, marca, modelo, tamanho);
+        //    ProdutoRepositorio produtoRepositorio = new ProdutoRepositorio();
+        //    produtoRepositorio.Incluir(valor, nome, sku, segmento, material, cor, marca, modelo, tamanho);
 
-            Console.WriteLine("Você deseja visualizar os produtos? s/n");
-            var condicao = Console.ReadLine();
-            if (condicao == "s")
-            {
-                var resultado = produtoRepositorio.SelecionarTudo();
-                foreach (var i in resultado)
-                {
-                    Console.WriteLine($"{i.ValorVenda} | {i.Nome} | {i.SKU} | {i.Segmento} | {i.DetalheProduto} | {i.Ativo}");
-                }
-            }
+        //    Console.WriteLine("Você deseja visualizar os produtos? s/n");
+        //    var condicao = Console.ReadLine();
+        //    if (condicao == "s")
+        //    {
+        //        var resultado = produtoRepositorio.SelecionarTudo();
+        //        foreach (var i in resultado)
+        //        {
+        //            Console.WriteLine($"{i.ValorVenda} | {i.Nome} | {i.SKU} | {i.Segmento} | {i.DetalheProduto} | {i.Ativo}");
+        //        }
+        //    }
 
-            Console.WriteLine("-------------------------------------------------------------------------------------------------");
-            Console.WriteLine("Selecione o Produto que será alterado:");
-            var idProduto = int.Parse(Console.ReadLine());
+        //    Console.WriteLine("-------------------------------------------------------------------------------------------------");
+        //    Console.WriteLine("Selecione o Produto que será alterado:");
+        //    var idProduto = int.Parse(Console.ReadLine());
 
-            Console.WriteLine("Novos dados!");
-            Console.Write("Valor de Mercado: ");
-            var valorNovo = decimal.Parse(Console.ReadLine());
-            Console.Write("Nome do Produto: ");
-            var nomeNovo = Console.ReadLine();
-            Console.Write("Segmento do Produto: ");
-            var segmentoNovo = repoSeg.SelecionarPorId(int.Parse(Console.ReadLine()));
-            Console.Write("Material: ");
-            var materialNovo = Console.ReadLine();
-            Console.Write("Cor: ");
-            var corNovo = Console.ReadLine();
-            Console.Write("Marca: ");
-            var marcaNovo = Console.ReadLine();
-            Console.Write("Modelo: ");
-            var modeloNovo = Console.ReadLine();
-            Console.Write("Tamanho: ");
-            var tamanhoNovo = Console.ReadLine();
+        //    Console.WriteLine("Novos dados!");
+        //    Console.Write("Valor de Mercado: ");
+        //    var valorNovo = decimal.Parse(Console.ReadLine());
+        //    Console.Write("Nome do Produto: ");
+        //    var nomeNovo = Console.ReadLine();
+        //    Console.Write("Segmento do Produto: ");
+        //    var segmentoNovo = repoSeg.SelecionarPorId(int.Parse(Console.ReadLine()));
+        //    Console.Write("Material: ");
+        //    var materialNovo = Console.ReadLine();
+        //    Console.Write("Cor: ");
+        //    var corNovo = Console.ReadLine();
+        //    Console.Write("Marca: ");
+        //    var marcaNovo = Console.ReadLine();
+        //    Console.Write("Modelo: ");
+        //    var modeloNovo = Console.ReadLine();
+        //    Console.Write("Tamanho: ");
+        //    var tamanhoNovo = Console.ReadLine();
 
-            produtoRepositorio.AtualizarProduto(idProduto, valorNovo, nomeNovo, segmentoNovo,
-                materialNovo, corNovo, marcaNovo, modeloNovo, tamanhoNovo);
+        //    produtoRepositorio.AtualizarProduto(idProduto, valorNovo, nomeNovo, segmentoNovo,
+        //        materialNovo, corNovo, marcaNovo, modeloNovo, tamanhoNovo);
 
-            Console.WriteLine("Você deseja visualizar os produtos? s/n");
-            condicao = Console.ReadLine();
-            if (condicao == "s")
-            {
-                var resultado = produtoRepositorio.SelecionarTudo();
-                foreach (var i in resultado)
-                {
-                    Console.WriteLine($"{i.ValorVenda} | {i.Nome} | {i.SKU} | {i.Segmento} | {i.DetalheProduto} | {i.Ativo}");
-                }
-            }
-        }
-        public void TesteSegmento()
+        //    Console.WriteLine("Você deseja visualizar os produtos? s/n");
+        //    condicao = Console.ReadLine();
+        //    if (condicao == "s")
+        //    {
+        //        var resultado = produtoRepositorio.SelecionarTudo();
+        //        foreach (var i in resultado)
+        //        {
+        //            Console.WriteLine($"{i.ValorVenda} | {i.Nome} | {i.SKU} | {i.Segmento} | {i.DetalheProduto} | {i.Ativo}");
+        //        }
+        //    }
+        //}
+        public static void TesteSegmento()
         {
             /*
              1 - para cadastrar categoria/sub
@@ -138,7 +138,7 @@ namespace TechStyle.UI
 
             SegmentoRepositorio repoSeg = new SegmentoRepositorio();
 
-            //repoSeg.Incluir(categoria, subcategoria);
+            repoSeg.Incluir(categoria, subcategoria);
             repoSeg.Incluir("Masculino", "Social");
             repoSeg.Incluir("Infantil", "fantasias");
             repoSeg.Incluir("Feminino", "Social");
