@@ -19,7 +19,7 @@ namespace TechStyle.Dominio.Modelo
 
         public Produto()
         {
-            DetalheProduto = new DetalheProduto();
+            //DetalheProduto = new DetalheProduto();
         }
 
         public void Cadastrar(decimal valorVenda, string nome, string sku, int idSegmento)
@@ -41,13 +41,11 @@ namespace TechStyle.Dominio.Modelo
             /* 5, moda feminina, lingerie */
         }
 
-        public void Alterar(decimal valorVenda, string nome, Segmento segmento,
-            string material, string cor, string marca, string modelo, string tamanho)
+        public void Alterar(decimal valorVenda, string nome, int idSegmento)
         {
             ValorVenda = (valorVenda <= 0) ? ValorVenda : valorVenda;
             Nome = string.IsNullOrEmpty(nome.Trim()) ? Nome : nome;
-            Segmento = (segmento == null) ? Segmento : segmento;
-            DetalheProduto.Alterar(material, cor, marca, modelo, tamanho);
+            IdSegmento = idSegmento;
         }
 
         public void AlterarStatus(bool ativo)

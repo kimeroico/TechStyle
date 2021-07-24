@@ -18,7 +18,7 @@
             Marca = marca;
             Modelo = modelo;
             Tamanho = tamanho;
-            IdProduto = Id;
+            IdProduto = idProduto;
         }
 
         public void Alterar(string material, string cor, string marca, string modelo, string tamanho)
