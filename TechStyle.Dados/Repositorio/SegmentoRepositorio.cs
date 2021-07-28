@@ -30,7 +30,7 @@ namespace TechStyle.Dados.Repositorio
                 return false;
             }
 
-            segmentoEncontrado.Alterar(categoria, subcategoria);
+            segmentoEncontrado.Alterar(id, categoria, subcategoria);
 
             return base.Alterar(segmentoEncontrado);
         }

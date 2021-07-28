@@ -18,7 +18,9 @@ namespace TechStyle.Dados.Map
             builder.Property(x => x.Categoria).HasColumnType("varchar(100)").IsRequired();
             builder.Property(x => x.Subcategoria).HasColumnType("varchar(100)").IsRequired();
 
-            builder.HasMany<Produto>(p => p.Produtos).WithOne(s => s.Segmento).HasForeignKey(i => i.IdSegmento);
+            builder.HasMany<Produto>(p => p.Produtos)
+                .WithOne(s => s.Segmento)
+                .HasForeignKey(i => i.IdSegmento);
         }
     }
 }
