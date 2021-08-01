@@ -73,16 +73,16 @@ namespace TechStyle.UI
             ProdutoRepositorio produtoRepositorio = new ProdutoRepositorio();
             //produtoRepositorio.Incluir(valor, nome, sku, segmento, material, cor, marca, modelo, tamanho);
 
-            Console.WriteLine("Você deseja visualizar os produtos? s/n");
-            var condicao = Console.ReadLine();
-            if (condicao == "s")
-            {
-                var resultado = produtoRepositorio.SelecionarTudo();
-                foreach (var i in resultado)
-                {
-                    Console.WriteLine($"{i.ValorVenda} | {i.Nome} | {i.SKU} | {i.Segmento} | {i.DetalheProduto} | {i.Ativo}");
-                }
-            }
+            //Console.WriteLine("Você deseja visualizar os produtos? s/n");
+            //var condicao = Console.ReadLine();
+            //if (condicao == "s")
+            //{
+            //    var resultado = produtoRepositorio.SelecionarTudo();
+            //    foreach (var i in resultado)
+            //    {
+            //        Console.WriteLine($"{i.ValorVenda} | {i.Nome} | {i.SKU} | {i.Segmento} | {i.DetalheProduto} | {i.Ativo}");
+            //    }
+            //}
 
             Console.WriteLine("-------------------------------------------------------------------------------------------------");
             Console.WriteLine("Selecione o Produto que será alterado:");

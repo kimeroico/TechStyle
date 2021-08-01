@@ -41,6 +41,14 @@ namespace TechStyle.Dados.Repositorio
 
        
 
+            if(base.Alterar(produto))
+            {
+                return new DetalheProdutoRepositorio().Alterar(material, cor, marca, modelo, tamanho, produto.Id);
+            }
+
+            return false;
+        }
+
         public void AlterarStatus(int id)
         {
             var produto = SelecionarPorId(id);

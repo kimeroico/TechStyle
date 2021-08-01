@@ -10,7 +10,7 @@ namespace TechStyle.API.Controllers
     [ApiController]
     public class SegmentoController : ControllerBase
     {
-        private readonly SegmentoRepositorio _repo;
+        private readonly SegmentoRepositorio _repo;      
 
         public SegmentoController()
         {
@@ -22,21 +22,22 @@ namespace TechStyle.API.Controllers
         {
             return _repo.SelecionarTudo();
         }
-
+        
         [HttpGet("{id}")]
         public Segmento Get(int id)
         {
             return _repo.SelecionarPorId(id);
         }
-
+        
         [HttpPost]
         public void Post([FromBody] SegmentoDTO dto)
         {
             var segmento = new Segmento();
             segmento.Cadastrar(dto.Categoria, dto.Subcategoria);
+
             _repo.Incluir(segmento);
         }
-
+        
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] SegmentoDTO dto)
         {
@@ -45,7 +46,7 @@ namespace TechStyle.API.Controllers
 
             _repo.Alterar(segmento);
         }
-
+        
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
