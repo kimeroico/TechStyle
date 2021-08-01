@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 using System.Linq;
-using TechStyle.Dados.Repositorio;
 using TechStyle.Dominio.Modelo;
 
-namespace TechStyle.Dominio.Repositorio
+namespace TechStyle.Dados.Repositorio
 {
     public class ProdutoRepositorio : BaseRepositorio<Produto>
     {
@@ -27,26 +27,25 @@ namespace TechStyle.Dominio.Repositorio
             return false;
         }
 
-        public bool AtualizarProduto(int id, decimal valorVenda, string nome, Segmento segmento,
-            string material, string cor, string marca, string modelo, string tamanho)
+        public bool Alterar(int id, decimal valorVenda, string nome, int idSegmento)
         {
             var produto = SelecionarPorId(id);
 
-            if (!VerificarDuplicidade(produto) || ExisteAlteracao(nome, material, cor, marca, modelo, tamanho))
-            {
-                return false;
-            }
+          
+            produto.Alterar(id, valorVenda, nome, idSegmento);
 
-            produto.Alterar(valorVenda, nome, segmento, material, cor, marca, modelo, tamanho);
-            return true;
+            base.Alterar(produto);
+
+            return false;
         }
+
+       
 
         public void AlterarStatus(int id)
         {
             var produto = SelecionarPorId(id);
             var status = produto.Ativo;
             produto.AlterarStatus(!status);
-
         }
 
         public List<Produto> SelecionarPorNome(string nome)
@@ -77,12 +76,17 @@ namespace TechStyle.Dominio.Repositorio
 
         private bool ExisteAlteracao(string nome, string material, string cor, string marca, string modelo, string tamanho)
         {
-            return contexto.Produto.Any(x => x.Nome.ToUpper() == nome.Trim().ToUpper()
-                                            && x.DetalheProduto.Material.ToUpper() == material.Trim().ToUpper()
-                                            && x.DetalheProduto.Cor.ToUpper() == cor.Trim().ToUpper()
-                                            && x.DetalheProduto.Marca.ToUpper() == marca.Trim().ToUpper()
-                                            && x.DetalheProduto.Modelo.ToUpper() == modelo.Trim().ToUpper()
-                                            && x.DetalheProduto.Tamanho.ToUpper() == tamanho.Trim().ToUpper());
+            return contexto.Produto.Include(x => x.DetalheProduto).Any(x => x.Nome.ToUpper() == nome.Trim().ToUpper()
+            && x.DetalheProduto.Material.ToUpper() == material.Trim().ToUpper()
+            && x.DetalheProduto.Cor.ToUpper() == cor.Trim().ToUpper()
+            && x.DetalheProduto.Marca.ToUpper() == marca.Trim().ToUpper()
+            && x.DetalheProduto.Modelo.ToUpper() == modelo.Trim().ToUpper()
+            && x.DetalheProduto.Tamanho.ToUpper() == tamanho.Trim().ToUpper());
         }
+
+        //public Produto SelecionarPorIdCompleto(int id)
+        //{
+        //    return contexto.Produto.Include(x => x.DetalheProduto).FirstOrDefault(x => x.Id == id);
+        //}
     }
 }

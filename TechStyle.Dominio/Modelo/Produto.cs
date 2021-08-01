@@ -17,15 +17,6 @@ namespace TechStyle.Dominio.Modelo
         public List<ItemVendas> ItemVendas { get; set; }
         public ProdutoEmEstoque Estoque { get; set; }
 
-        public ProdutoEmEstoque Estoque { get; set; }
-
-        public Loja Loja { get; set; }
-
-        public Produto()
-        {
-            DetalheProduto = new DetalheProduto();
-        }
-
         public void Cadastrar(decimal valorVenda, string nome, string sku, int idSegmento)
         {
             ValorVenda = valorVenda;
@@ -34,25 +25,14 @@ namespace TechStyle.Dominio.Modelo
             IdSegmento = idSegmento;
             Ativo = false;
             IdSegmento = idSegmento;
-
-            // ValidarDuplicidade
-
-            // chamar insercao no banco
-            // ID, CATEGORIA,    SUB       = A SOMA DE TUDO É O SEGMENTO
-            /* 1, moda feminina, praia */
-            /* 2, moda feminina, casual */
-            /* 3, moda feminina, social */
-            /* 4, moda feminina, fitness */
-            /* 5, moda feminina, lingerie */
         }
 
-        public void Alterar(decimal valorVenda, string nome, Segmento segmento,
-            string material, string cor, string marca, string modelo, string tamanho)
+        public void Alterar(int id, decimal valorVenda, string nome, int idSegmento)
         {
+            Id = id;
             ValorVenda = (valorVenda <= 0) ? ValorVenda : valorVenda;
             Nome = string.IsNullOrEmpty(nome.Trim()) ? Nome : nome;
-            Segmento = (segmento == null) ? Segmento : segmento;
-            DetalheProduto.Alterar(material, cor, marca, modelo, tamanho);
+            IdSegmento = idSegmento;
         }
 
         public void AlterarStatus(bool ativo)

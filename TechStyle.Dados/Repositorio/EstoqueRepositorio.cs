@@ -5,30 +5,20 @@ using TechStyle.Dominio.Modelo;
 
 namespace TechStyle.Dados.Repositorio
 {
-    public class EstoqueRepositorio
+    public class EstoqueRepositorio : BaseRepositorio<ProdutoEmEstoque>
     {
-        private List<ProdutoEmEstoque> listaDoEstoque { get; set; }
-
-        public EstoqueRepositorio()
-        {
-            listaDoEstoque = new List<ProdutoEmEstoque>();
-        }
-
         public bool IncluirNoEstoque(int quantidadeMinima, string local, int quantidadeLocal,
             int quantidadeTotal, Produto produto)
         {
             var novoNoEstoque = new ProdutoEmEstoque();
-            novoNoEstoque.Cadastrar(listaDoEstoque.Count + 1, quantidadeMinima, local, 
-                quantidadeLocal, quantidadeTotal, produto);
+            novoNoEstoque.Cadastrar(quantidadeMinima, local, quantidadeLocal, quantidadeTotal, produto.Id);
 
             if (Existe(novoNoEstoque))
             {
                 return false;
             }
 
-            listaDoEstoque.Add(novoNoEstoque);
-            
-            return true;
+            return base.Incluir(novoNoEstoque);
         }
 
         public bool AtualizarNoEstoque(int id, int quantidadeMinima, string local, int quantidadeLocal, int quantidadeTotal)
@@ -67,26 +57,21 @@ namespace TechStyle.Dados.Repositorio
             produtoEmEstoque.IncluirQuantidade(quantidade);
         }
 
-        public ProdutoEmEstoque SelecionarPorId(int id)
-        {
-            return listaDoEstoque.FirstOrDefault(x => x.Id == id);
-        }
-
         public List<ProdutoEmEstoque> SelecionarTudo()
         {
-            return listaDoEstoque.OrderBy(x => x.Produto).ToList();
+            return base.SelecionarTudo().OrderBy(x => x.Produto).ToList();
         }
 
 
         private bool Existe(ProdutoEmEstoque estoque)
         {
-            return listaDoEstoque.Any(x => x.Local.Trim().ToLower() == estoque.Local.Trim().ToLower()
+            return contexto.ProdutoEmEstoques.Any(x => x.Local.Trim().ToLower() == estoque.Local.Trim().ToLower()
             && x.Produto == estoque.Produto);
         }
 
         private bool LocalEstaOcupado(string local)
         {
-            return listaDoEstoque.Any(x => x.Local.Trim().ToLower() == local.Trim().ToLower());
+            return contexto.ProdutoEmEstoques.Any(x => x.Local.Trim().ToLower() == local.Trim().ToLower());
         }
 
         private bool VerificacaoDeQuantidade(ProdutoEmEstoque produto, int quantidade)

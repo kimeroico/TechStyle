@@ -10,7 +10,7 @@ using TechStyle.Dados;
 namespace TechStyle.Dados.Migrations
 {
     [DbContext(typeof(Contexto))]
-    [Migration("20210724002646_BancoInicial")]
+    [Migration("20210724172440_BancoInicial")]
     partial class BancoInicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

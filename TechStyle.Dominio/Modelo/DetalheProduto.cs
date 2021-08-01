@@ -21,8 +21,9 @@
             IdProduto = idProduto;
         }
 
-        public void Alterar(string material, string cor, string marca, string modelo, string tamanho)
+        public void Alterar(int idProduto, string material, string cor, string marca, string modelo, string tamanho)
         {
+            IdProduto = idProduto;
             Material = string.IsNullOrEmpty(material.Trim()) ? Material : material;
             Cor = string.IsNullOrEmpty(cor.Trim()) ? Cor : cor;
             Marca = string.IsNullOrEmpty(marca.Trim()) ? Marca : marca;
